@@ -16,9 +16,9 @@
         <button class="btn btn-primary"><a href="{{ route('articles.create') }}">{{ __('Create') }}</a></button>
     </div>
 
-    @if($articles ?? ''->count())
+    @if($articles->count())
     <div class="text-center">
-        {!! $articles ?? ''->render() !!}
+        {!! $articles->render() !!}
     </div>
     @endif
 @stop
