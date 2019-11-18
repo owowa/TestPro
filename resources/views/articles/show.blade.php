@@ -21,3 +21,26 @@
         </a>
     </div>
 @stop
+
+@section('script')
+    <script>
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKRN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $('.button__delete').on('click', function(e){
+            var articleId = $('article').data('id');
+
+            if(confirm('글 삭제')) {
+                $.ajax({
+                    type: 'DELETE',
+                    url: '/articles/'+articleId
+                }).then(function(){
+                    window.location.href='/articles';
+                });
+            }
+        });
+    </script>
+@stop

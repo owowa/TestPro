@@ -103,8 +103,10 @@ class NabeJapanController extends Controller
      * @param  \App\NabeJapan  $NabeJapan
      * @return \Illuminate\Http\Response
      */
-    public function destroy(NabeJapan $NabeJapan)
+    public function destroy(NabeJapan $article)
     {
         //
+        $article->delete();
+        return response()->json([],204);
     }
 }
