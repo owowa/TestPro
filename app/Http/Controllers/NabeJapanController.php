@@ -15,7 +15,7 @@ class NabeJapanController extends Controller
      */
     public function index()
     {
-        $articles = \App\NabeJapan::paginate(5);
+        $articles = \App\NabeJapan::latest()->paginate(5);
         return view('articles.index', compact('articles'));
     }
 
@@ -62,35 +62,39 @@ class NabeJapanController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\NabeJapan  $NabeJapan
+     * @param  \App\NabeJapan  $article
      * @return \Illuminate\Http\Response
      */
-    public function show(NabeJapan $NabeJapan)
+    public function show(NabeJapan $article)
     {
         //
+        return view('articles.show', compact('article'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\NabeJapan  $NabeJapan
+     * @param  \App\NabeJapan  $article
      * @return \Illuminate\Http\Response
      */
-    public function edit(NabeJapan $NabeJapan)
+    public function edit(NabeJapan $article)
     {
         //
+        return view('articles.edit', compact('article'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\NabeJapan  $NabeJapan
+     * @param  \App\NabeJapan  $article
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, NabeJapan $NabeJapan)
+    public function update(Request $request, NabeJapan $article)
     {
         //
+        $article->update($request->all());
+        return redirect(route('articles.show', $article->id));
     }
 
     /**

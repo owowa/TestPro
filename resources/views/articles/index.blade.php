@@ -1,7 +1,25 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
+    <div class="page-header">
+        <h3>글 목록</h3>
+    </div>
+
+    <div class="text-right">
+        <a href="{{route('articles.create')}}" class="btn btn-primary">
+            <i class="fa fa-plus-circle"></i> 글 쓰기
+        </a>
+    </div>
+
+    <article>
+        @forelse($articles as $article)
+            @include('articles.partial.article', compact('article'))
+        @empty
+            <p class="text-center text-danger">글이 없습니다.</p>
+        @endforelse
+    </article>
+
+    <!-- <div class="container">
         <h1>게시판 글 목록</h1>
         <hr>
         <ul>
@@ -13,12 +31,11 @@
                 <p>글이 없습니다</p>
             @endforelse
         </ul>
-        <button class="btn btn-primary"><a href="{{ route('articles.create') }}">{{ __('Create') }}</a></button>
-    </div>
+    </div> -->
 
     @if($articles->count())
     <div class="text-center">
-        {!! $articles->render() !!}
+        {!! $articles->appends((Request::except('page')))->render() !!}
     </div>
     @endif
 @stop
