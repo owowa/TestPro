@@ -33,7 +33,6 @@
         }
     });
  
-   //delete user login
     $('button').on('click', function () {
         if(confirm("Ajax Test")) {
  
